@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de jogadores</title>
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<div th:switch="${jogadores}" class="container">
+  <h2 th:case="null">Não há jogadores cadastrados!</h2>
+  <div th:case="*" class="row">
+    <h2>Jogadores</h2>
+    <table class="table table-responsive table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Telefone</th>
+        <th>Codinome</th>
+        <th>Grupo</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="jogador : ${jogadores}">
+        <td th:text="${jogador.nome}"></td>
+        <td th:text="${jogador.email}"></td>
+        <td th:text="${jogador.telefone}"></td>
+        <td th:text="${jogador.codinome}"></td>
+        <td th:text="${jogador.grupo}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <p><a href="/jogadorForm">Adicionar Jogador</a></p>
+</div>
+</body>
+</html>

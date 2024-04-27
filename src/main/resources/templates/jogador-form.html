@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Cadastro de Jogador</title>
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="container form-container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h2 class="text-center mb-4">Cadastro de Jogador</h2>
+      <form action="#" th:action="@{/salvarJogador}" th:object="${jogadorRequest}" method="post">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text" class="form-control" th:field="*{nome}" id="nome" placeholder="Nome">
+          <span class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" th:field="*{email}" id="email" placeholder="Email">
+          <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+        </div>
+        <div class="form-group">
+          <label for="telefone">Telefone</label>
+          <input type="text" class="form-control" th:field="*{telefone}" id="telefone" placeholder="Telefone">
+          <span class="text-danger" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></span>
+        </div>
+        <div class="form-group">
+          <label for="vingadores">Grupo</label><br>
+          <input type="radio" id="vingadores" name="grupo" value="VINGADORES">
+          <label for="vingadores">Vingadores</label><br>
+          <input type="radio" id="liga_da_justica" name="grupo" value="LIGA_DA_JUSTICA">
+          <label for="liga_da_justica">Liga da Justiça</label><br>
+          <span class="text-danger" th:if="${#fields.hasErrors('grupo')}" th:errors="*{grupo}"></span>
+        </div>
+        <div class="form-group">
+          <div class="col text-center">
+            <p></p>
+            <input type="submit" class="btn btn-primary btn-block" value="Save">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
