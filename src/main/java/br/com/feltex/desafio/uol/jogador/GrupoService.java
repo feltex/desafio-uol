@@ -14,7 +14,6 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -35,8 +34,8 @@ public class GrupoService {
       final var jsonNode = objectMapper.readTree(uri.toURL());
       final var listaVingadores = (ArrayNode) jsonNode.get("vingadores");
 
-      for(JsonNode item : listaVingadores){
-         this.vingadores.add(item.get("codinome").asText());
+      for (JsonNode item : listaVingadores) {
+        this.vingadores.add(item.get("codinome").asText());
       }
 
     } catch (Exception e) {
@@ -47,7 +46,7 @@ public class GrupoService {
 
   @PostConstruct
   private void lerLigaDaJustica() {
-    try{
+    try {
       final var factory = DocumentBuilderFactory.newInstance();
       final var builder = factory.newDocumentBuilder();
       final var document = builder.parse(environment.getProperty("app.liga.da.justica.url"));
@@ -57,7 +56,7 @@ public class GrupoService {
         Element codinomeElement = (Element) listaCodinomes.item(i);
         this.ligaDaJustica.add(codinomeElement.getTextContent());
       }
-    }catch (Exception e){
+    } catch (Exception e) {
 
       log.error("Não foi possível ler arquivo de Liga de Justiça", e);
     }
